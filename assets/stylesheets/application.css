@@ -742,6 +742,6 @@ body div.right { width: 150px;}
 body div.center { margin-right: 155px; margin-left: 145px;}
 body div.powered { text-align: center; }
 
-body div.banner { background: rgb(255,255,220); color: black; }
+body div.banner { background: #507AAA; color: white; }
 
 body { font-size: 10px; }
