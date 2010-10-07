@@ -8,9 +8,6 @@ form, input, button, textarea, select, option, fieldset, label {
 select, input, textarea, code, code span {
 	font-size: 100%;
 }
-body {
-	font-size: 80%;
-}
 .fontSize200 {
 	font-size: 200%;
 }

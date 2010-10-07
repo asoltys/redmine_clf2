@@ -157,7 +157,7 @@ div.square {
 .splitcontentleft{float:left; width:49%;}
 .splitcontentright{float:right; width:49%;}
 textarea.wiki-edit { width: 99%; }
-div.issue {background:#ffffdd; padding:6px; margin-bottom:6px;border: 1px solid #d7d7d7;}
+div.issue {background:#fafaed; padding:6px; margin-bottom:6px;border: 1px solid #d7d7d7;}
 p.breadcrumb { font-size: 0.9em; margin: 4px 0 4px 0;}
 p.subtitle { font-size: 0.9em; margin: -6px 0 12px 0; font-style: italic; } 
 p.footnote { font-size: 0.9em; margin-top: 0px; margin-bottom: 0px; }
@@ -223,10 +223,6 @@ table#time-report tbody tr { font-style: italic; color: #777; }
 table#time-report tbody tr.last-level { font-style: normal; color: #555; }
 table#time-report tbody tr.total { font-style: normal; font-weight: bold; color: #555; background-color:#EEEEEE; }
 table#time-report .hours-dec { font-size: 0.9em; }
-
-form#issue-form .attributes { margin-bottom: 8px; }
-form#issue-form .attributes p { padding-top: 1px; padding-bottom: 2px; }
-form#issue-form .attributes select { min-width: 30%; }
 
 ul.projects { margin: 0; padding-left: 1em; }
 ul.projects.root { margin: 0;  padding: 0; }
@@ -409,11 +405,11 @@ table.cal td.today {background:#ffffdd;}
 table.cal td.today p.day-num {font-weight: bold;}
 
 /***** Redmine-Tooltips ******/
-.redmine-tooltip{position:relative;z-index:24;}
-.redmine-tooltip:hover{z-index:25;color:#000;}
-.redmine-tooltip span.tip{display: none; text-align:left;}
+.tooltip{position:relative;z-index:24;}
+.tooltip:hover{z-index:25;color:#000;}
+.tooltip span.tip{display: none; text-align:left;}
 
-div.redmine-tooltip:hover span.tip{
+div.tooltip:hover span.tip{
 display:block;
 position:absolute;
 top:12px; left:24px; width:270px;
