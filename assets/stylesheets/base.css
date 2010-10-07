@@ -150,12 +150,19 @@ div.fip, div.cwm {
 /* INSTUTIONAL BANNER CSS BEGINS | DEBUT DU CSS DE LA BANNIERE INSTITUTIONNELLE */
 div.banner, div.banner-eng, div.banner-fra, div.banner-lfcoa-eng, div.banner-lfcoa-fra {
 	text-align: center; 
-	min-height: 5.58em;
+	min-height: 75px;
 	margin-top: 3.14em;
 	padding-bottom: 0.67em;
 	position: relative;
 	z-index: 1;
 }
+
+div.banner img.banner {
+  left: 0;
+  position: absolute;
+  z-index: -1;
+}
+
 * html div.banner, * html div.banner-eng, * html div.banner-fra, * html div.banner-lfcoa-eng, * html div.banner-lfcoa-fra {
 	position: static;
 }
@@ -404,12 +411,6 @@ a.menulink {
 a.menulink:hover {
 	text-decoration: underline;
 }
-div.prodis {
-	height: 15px;
-	min-height: 0.9375em;
-	padding: 0;
-	margin: 0;
-}
 /* SIDE MENU CSS ENDS | FIN DU CSS DU MENU LATERAL */
 
 /* CONTENT CSS BEGINS | DEBUT DU CSS DU CONTENU */
@@ -546,7 +547,7 @@ abbr, acronym, span.abbr {
 	cursor: help;
 }
 blockquote {
-	background-color: #CC9;
+	background-color: #DDB;
 	color: #000;
 	border: 1px solid #000;
 	font-style: italic;

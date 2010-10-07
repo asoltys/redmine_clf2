@@ -3,7 +3,7 @@
 .wiki h3 {font-size: 13px;padding: 2px 10px 1px 0px;margin-bottom: 5px; border-bottom: 1px dotted #bbbbbb; color: #444;}
 
 /***** Layout *****/
-#wrapper {background: white;}
+#wrapper {background: #fff;}
 
 #top-menu {background: #2C4056; color: #fff; height:1.8em; font-size: 0.8em; padding: 2px 2px 0px 6px;}
 #top-menu ul {margin: 0;  padding: 0;}
@@ -46,12 +46,25 @@
 
 #main {background-color:#EEEEEE;}
 
-#sidebar{ background: #cc9; float: right; position: relative; z-index: 9; min-height: 600px; padding: 0; margin: 0; right: 10px; margin-left: 10px; }
-#sidebar h3{ font-size: 14px; margin-top:14px; }
+#sidebar{ background: #ddb; float: right; position: relative; z-index: 9; min-height: 610px; margin: 0; right: 10px; }
 #sidebar hr{ width: 100%; margin: 0 auto; height: 1px; background: #ccc; border: 0; }
+#sidebar a{ display:block; color: #000; text-decoration: none; height: auto; }
+#sidebar a:hover { text-decoration: underline; }
+#sidebar h1, #sidebar h2, #sidebar h3 { 
+  font-size: 12px; 
+  font-weight: bold; 
+  color: white;
+  background: #369; 
+  margin: 0;
+  padding: 5px; 
+  border-top: 3px solid white;
+  border-bottom: 3px solid white; 
+  width: 100%;
+}
 * html #sidebar hr{ width: 95%; position: relative; left: -6px; color: #ccc; }
 
 #content { width: 80%; background-color: #fff; margin: 0px; border-right: 1px solid #ddd; padding: 6px 10px 10px 10px; z-index: 10; }
+#content h1, #content h2, #content h3 { margin-top: 10px; color: #369; }
 * html #content{ width: 80%; padding-left: 0; margin-top: 0px; padding: 6px 10px 10px 10px;}
 html>body #content { min-height: 600px; } 
 * html body #content { height: 600px; } /* IE */
@@ -61,7 +74,8 @@ html>body #content { min-height: 600px; }
 
 #footer {clear: both; border-top: 1px solid #bbb; font-size: 0.9em; color: #aaa; padding: 5px; text-align:center; background:#fff;}
 
-#login-form table {margin-top:5em; padding:1em; margin-left: auto; margin-right: auto; border: 2px solid #57A; background-color:#fafaed; }
+#login-form {margin-top:5em;}
+#login-form table {margin-top:5em; padding:1em; margin-left: auto; margin-right: auto; border: 2px solid #369; background-color:#ddb; }
 #login-form table td {padding: 6px;}
 #login-form label {font-weight: bold;}
 
@@ -149,7 +163,7 @@ div.square {
  overflow: hidden;
  width: .6em; height: .6em;
 }
-.contextual {float:right; white-space: nowrap; line-height:1.4em;margin-top:5px; padding-left: 10px; font-size:0.9em;}
+.contextual {min-height: 30px; float:right; white-space: nowrap; line-height:1.4em;margin-top:5px; padding-left: 10px; font-size:0.9em;}
 .contextual input {font-size:0.9em;}
 .message .contextual { margin-top: 0; }
 
@@ -721,7 +735,7 @@ td.username img.gravatar {
 /* IRCan uses the maximum width it can: */
 body div.page {width: auto;}
 body div.colLayout {background: #FFFFFF url(../images/3-col-left-only.gif) repeat-y scroll 0 0;}
-body div.right {background-color: #cccc99;}
+body div.right {background-color: #DDB;}
 
 /* Some Redmine overrides */
 body #content {width: 100%; border-right: none;}
@@ -736,6 +750,4 @@ body div.right { width: 150px;}
 body div.center { margin-right: 155px; margin-left: 145px;}
 body div.powered { text-align: center; }
 
-body div.banner { background: #507AAA; color: white; }
-
-body { font-size: 10px; }
+body div.banner { background: #354 url('/plugin_assets/redmine_clf2/images/banner-repeat.jpg'); color: white; }

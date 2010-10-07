@@ -1,11 +1,12 @@
 	<!-- DEBUT DE L'EN-TETE PCIM | FIP HEADER BEGINS --> 
 	<div class="fip"><a name="tphp" id="tphp"><%= image_tag 'sig-fra.gif', :plugin => 'redmine_clf2', :alt => "Travaux publics et Services gouvernementaux Canada" %></a></div>
-	<div class="cwm"><img src="http://www.tbs-sct.gc.ca/cioscripts/images/clf2/wmms.gif" width="83" height="20" alt="Symbole du gouvernement du Canada" /></div>
+	<div class="cwm"><%= image_tag 'wmms.gif', :plugin => 'redmine_clf2', :width => "83", :height=>"20", :alt=>"Symbole du gouvernement du Canada" %></div>
 	<!-- FIN DE L'EN-TETE PCIM | FIP HEADER ENDS --> 
 	
 	<!-- DEBUT DE LA BANNIERE INSTITUTIONNELLE | INSTITUTIONAL BANNER STARTS -->
 	<div class="banner">
-		<img src="http://www.tbs-sct.gc.ca/cioscripts/images/clf2/lffl.gif" class="lf pngfix" height="65" width="65" alt="" />
+		<%= image_tag 'lffl.png', :plugin => 'redmine_clf2', :width => "65", :height=>"65", :class=>"lf pngfix" %>
+    <%= image_tag 'pw-banner.jpg', :plugin => 'redmine_clf2', :class => 'banner' %>
 		<p class="main">Travaux publics et Services gouvernementaux Canada</p>
 		<p class="siteuri">www.tpsgc.gc.ca</p>
 	</div>
@@ -28,9 +29,9 @@
 			<li class="fiptexta"><div><a href="/english" lang="en" xml:lang="en" title="English - English version of the Web page">English</a></div></li>
 			<!-- FIN DU LIEN ANGLAIS | ENGLISH LINK ENDS -->
 			<li class="fiptext"><div><a href="/" title="Accueil - Page principale de la franchise RICAN du SCT">Accueil</a></div></li>
-			<li class="fiptextc"><div><a href="/projects/ircan-initiative/wiki/Frequently_Asked_Questions" title="Contactez-nous - Communiquez avec la franchise RICan du SCT">Contactez-nous</a></div></li>
-			<li class="fiptext"><div><a href="/projects/help-aide" title="Aide - Renseignements sur la fa&ccedil;on d'utiliser ce site Web">Aide</a></div></li>
-			<li class="fiptext"><div><a href="/search" title="Recherche - Recherche dans la franchise RICan du SCT">Recherche</a></div></li>
+			<li class="fiptextc"><div><a href="/contactez-nous" title="Contactez-nous">Contactez-nous</a></div></li>
+			<li class="fiptext"><div><a href="/aide" title="Aide">Aide</a></div></li>
+			<li class="fiptext"><div><a href="/recherce" title="Recherche">Recherche</a></div></li>
 			<li class="fiptextb"><div><a href="http://www.canada.gc.ca/accueil.html" title="canada.gc.ca - Site Web du gouvernement du Canada">canada.gc.ca</a></div></li>
 		</ul>
 	</div>

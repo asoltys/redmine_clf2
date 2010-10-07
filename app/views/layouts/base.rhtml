@@ -15,28 +15,29 @@
 </head><body>
 <div class="page"><div class="core">
 <% if current_language() == :fr %>
-<%= render :partial => 'layouts/clf2_header_fra', :plugin => 'redmine_clf2' %>
+  <%= render :partial => 'layouts/clf2_header_fra', :plugin => 'redmine_clf2' %>
 
 	<div class="colLayout">
-	<%= render :partial => 'layouts/clf2_leftmenu_fra', :plugin => 'redmine_clf2' %>
-	
-	<%= render :partial => 'layouts/clf2_rightmenu_fra', :plugin => 'redmine_clf2' %>
-	
-	<%= render :partial => 'layouts/clf2_contentstart_fra', :plugin => 'redmine_clf2' %>
+    <%= render :partial => 'layouts/clf2_leftmenu_fra', :plugin => 'redmine_clf2' %>
+    <%= render :partial => 'layouts/clf2_rightmenu_fra', :plugin => 'redmine_clf2' %>
+    <%= render :partial => 'layouts/clf2_contentstart_fra', :plugin => 'redmine_clf2' %>
 <%  else  %>
-<%= render :partial => 'layouts/clf2_header_eng', :plugin => 'redmine_clf2' %>
+  <%= render :partial => 'layouts/clf2_header_eng', :plugin => 'redmine_clf2' %>
 
 	<div class="colLayout">
-	<%= render :partial => 'layouts/clf2_leftmenu_eng', :plugin => 'redmine_clf2' %>
-	
-	<%= render :partial => 'layouts/clf2_rightmenu_eng', :plugin => 'redmine_clf2' %>
-	
-	<%= render :partial => 'layouts/clf2_contentstart_eng', :plugin => 'redmine_clf2' %>
+    <%= render :partial => 'layouts/clf2_leftmenu_eng', :plugin => 'redmine_clf2' %>
+    <%= render :partial => 'layouts/clf2_rightmenu_eng', :plugin => 'redmine_clf2' %>
+    <%= render :partial => 'layouts/clf2_contentstart_eng', :plugin => 'redmine_clf2' %>
 <% end %>
 
 			<div id="content">
 				<%= content_tag('div', flash[:error], :class => 'flash error') if flash[:error] %>
 				<%= content_tag('div', flash[:notice], :class => 'flash notice') if flash[:notice] %>
+        <% if User.current.logged? %>
+          <div class="contextual">
+            <%= render_project_jump_box %>
+          </div>
+        <% end %>
 				<%= yield %>
 			</div>
 		

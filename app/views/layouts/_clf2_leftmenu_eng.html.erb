@@ -6,7 +6,7 @@
 		<!-- SIDE MENU TITLE ENDS | FIN DU TITRE DU MENU LATERAL -->
 		<ul class="nav">
                     <% unless User.current.logged? %>
-			<li><h2 class="nav"><acronym title="Intellectual Resources Canada">IRCan</acronym></h2></li>
+			<li><h2 class="nav">Redmine</h2></li>
 			<li><ul class="nav">
 					<li class="menucontent"><a class="menulink" title="Register &lt; Intellectual Resources Canada" href="/account/register">Register</a></li>
 					<li class="menucontent"><a class="menulink" title="Login &lt; Intellectual Resources Canada" href="/login">Login</a></li>
@@ -19,15 +19,12 @@
 	<li class="menucontent"><a class="menulink" title="Logout &lt; Intellectual Resources Canada" href="/logout">Logout</a></li>
         <% end %>
         <%= render_clf_main_menu(@project) %>
-            <% if controller.class == WelcomeController %>
 			<li>
-				<div class="prodis"></div>
-				<h2 class="navaid">Proactive Disclosure</h2>
+				<h2 class="nav">Proactive Disclosure</h2>
 				<!-- PROACTIVE DISCLOSURE BEGINS | DEBUT DU LIEN DIVULGATION PROACTIVE -->
 				<div class="menucontent"><a class="menulink" href="http://www.tbs-sct.gc.ca/pd-dp/index-eng.asp">Proactive Disclosure</a></div>
 				<!-- PROACTIVE DISCLOSURE ENDS | FIN DU LIEN DIVULGATION PROACTIVEE -->
 			</li>
-            <% end %>
 		</ul>
 	</div>
 	<!-- LEFT SIDE MENU ENDS | FIN DU MENU LATERAL GAUCHE --> 

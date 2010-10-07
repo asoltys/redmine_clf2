@@ -2,7 +2,7 @@
 /* Downloaded from http://www.tbs-sct.gc.ca/cioscripts/styles/clf2/base-institution.css */
 /* GENERAL CSS BEGINS | DEBUT DU CSS GENERAL */
 body {
-	background-color: #FFF;  /* changed from #CC9 - NI*/ 
+	background-color: #FFF;  /* changed from #DDB - NI*/ 
 }
 div.colLayout {
 	background-color: #FFF;
@@ -48,32 +48,33 @@ div.page div.core div.navaid a:hover,
 div.page div.core div.navaid a:active,
 div.page div.core div.navaid a:focus {
 	color: #000;
-	background-color: #CC9;
+	background-color: #DDB;
 	border-color: #000;
 }
 /* SKIP NAVIGATION CSS ENDS | FIN DU CSS DU SAUT DE NAVIGATION */
 
 /* GENERAL NAVIGATION CSS BEGINS | DEBUT DU CSS DE NAVIGATION GENERALE */
 div.left h2.nav, div.left h2.nav a:link, div.left h2.nav a:visited, div.left div.h2nav, div.left div.h2nav a:link, div.left div.h2nav a:visited, div.left p.h2nav, div.left p.h2nav a:link, div.left p.h2nav a:visited, div.right h2.nav, div.right h2.nav a:link, div.right h2.nav a:visited, div.right div.h2nav, div.right div.h2nav a:link, div.right div.h2nav a:visited, div.right p.h2nav, div.right p.h2nav a:link, div.right p.h2nav a:visited {
-	background-color: #CC9;
-	color: #000;
+	background-color: #369;
+	color: #fff;
 	text-decoration: none;
 }
 div.left h2.nav a:hover, div.left h2.nav a:active, div.left h2.nav a:focus, div.left div.h2nav a:hover, div.left div.h2nav a:active, div.left div.h2nav a:focus, div.left p.h2nav a:hover, div.left p.h2nav a:active, div.left p.h2nav a:focus, div.right h2.nav a:hover, div.right h2.nav a:active, div.right h2.nav a:focus, div.right div.h2nav a:hover, div.right div.h2nav a:active, div.right div.h2nav a:focus, div.right p.h2nav a:hover, div.right p.h2nav a:active, div.right p.h2nav a:focus {
 	text-decoration: underline;
 }
 div.right li ul.nav, div.right li p.nav, div.right li div.nav {
-	border: 1px solid #CC9;
+	border: 1px solid #DDB;
 }
+h2.nav{ border-top: 3px solid #fff; border-bottom: 3px solid #fff; }
 /* GENERAL NAVIGATION CSS ENDS | FIN DU CSS DE NAVIGATION GENERALE */
 
 /* SIDE MENU CSS BEGINS | DEBUT DU CSS DU MENU LATERAL */
 div.left li.menucontent, div.left div.menucontent {
-	border-bottom: 1px solid #CC9;
+	border-bottom: 1px solid #DDB;
 }
 div.left li.menucontent, div.left div.menucontent, div.left a.menulink {
 	color: #000;
-	background-color: #EEE;
+	background-color: #ddb;
 }
 div.right li.menucontent, div.right div.menucontent {
 	color: #000;
@@ -82,9 +83,6 @@ div.right li.menucontent, div.right div.menucontent {
 div.right a.menulink {
 	color: #000;
 	background-color: #FFF;
-}
-div.prodis {
-	background-color: #CC9;
 }
 /* SIDE MENU CSS ENDS | FIN DU CSS DU MENU LATERAL */
 
@@ -99,7 +97,7 @@ div.center a:visited {
 	color: #663;
 }
 /****div.blackborder {
-	border: solid #CC9 1px;
+	border: solid #DDB 1px;
 } ******Old style - NI  */
 
 div.blackborder {
