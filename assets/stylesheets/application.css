@@ -24,7 +24,7 @@
 #quick-search {float:right;}
 #project-select {float: right; padding: 5px;}
 
-#main-menu {position: absolute;  bottom: 0px;  left:6px; margin-right: -500px;}
+#main-menu {position: absolute;  bottom: 0px;  left:6px;}
 #main-menu ul {margin: 0;  padding: 0;}
 #main-menu li {
   float:left;
@@ -93,6 +93,7 @@ table.list th {  background-color:#EEEEEE; padding: 4px; white-space:nowrap; }
 table.list td { vertical-align: top; }
 table.list td.id { width: 2%; text-align: center;}
 table.list td.checkbox { width: 15px; padding: 0px;}
+table.list p { padding: 3px; margin: 0; }
 
 tr.project td.name a { padding-left: 16px; white-space:nowrap; }
 tr.project.parent td.name a { background: url('../images/bullet_toggle_minus.png') no-repeat; }
