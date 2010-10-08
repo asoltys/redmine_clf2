@@ -46,7 +46,8 @@
 
 #main {background-color:#EEEEEE;}
 
-#sidebar{ background: #ddb; float: right; position: relative; z-index: 9; min-height: 610px; margin: 0; right: 10px; }
+#sidebar{ width: 140px; background: #ddb; float: right; position: relative; z-index: 9; min-height: 610px; margin: 0; right: 10px; }
+#sidebar p { padding-left: 10px; }
 #sidebar hr{ width: 100%; margin: 0 auto; height: 1px; background: #ccc; border: 0; }
 #sidebar a{ display:block; color: #000; text-decoration: none; height: auto; }
 #sidebar a:hover { text-decoration: underline; }
