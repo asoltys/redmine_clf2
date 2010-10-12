@@ -2,10 +2,8 @@ fr:
   clf2_text_top_menu: Menu du site
   clf2_text_main_menu: Menu du projet
   clf2_text_read_more: Lire la suite
-  label_clf_redmine: RICan Redmine
-  label_overview: Vue d'ensemble
-#  label_help: Aide Redmine
-  label_powered_by: Logiciels Libre en marche
+  label_clf_redmine: Redmine
+  label_overview: "Vue d'ensemble"
   field_description_fr: Description Francophone
   field_description: Description Anglophone
   field_name_fr: Nom Francophone du projet
@@ -13,31 +11,3 @@ fr:
   text_report_a_problem: Signaler un problème
   setting_welcome_text: "Texte d'accueil anglophone"
   setting_welcome_text_fr: "Texte d'accueil francophone"
-  #
-  # Rename all language strings in the core Redmine:
-  #
-  # * Documents to Reference Desk
-  # * Files to Releases
-  #
-  # Documents:
-  permission_manage_documents: Administration du Bureau de référence
-  permission_view_documents: Visionnement du Bureau de référence
-  project_module_documents: Bureau de référence
-  label_document: Bureau de référence
-  label_document_new: Nouveau Document de référence
-  label_document_plural: Bureau de référence
-  label_document_added: Document sauvegardé
-  enumeration_doc_categories: Catégorie du Bureau de référence
-  # Files:
-  permission_manage_files: Administration des Émissions
-  permission_view_files: Visionnement des Émissions
-  project_module_files: Émissions
-  label_file_plural: Émissions
-  label_wiki: Wiki du projet
-  # Other strings
-  notice_failed_to_save_members: "Please ensure you indicate a role and user. / SVP assurez d'indiquer un rôle et utilisateur."
-  notice_account_pending: "Les inscriptions sont activées individuellement par notre personnel. Vous recevrez un message automatique pour vous informer au moment où votre compte est activé."
-  # Issues
-  label_issue_new: Nouvelle tâche
-  label_issue_plural: Tâches
-  label_issue_tracking: Suivi

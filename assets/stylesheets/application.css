@@ -49,9 +49,9 @@
 #sidebar{ width: 140px; background: #ddb; float: right; position: relative; z-index: 9; min-height: 610px; margin: 0; right: 10px; }
 #sidebar p { padding-left: 10px; }
 #sidebar hr{ width: 100%; margin: 0 auto; height: 1px; background: #ccc; border: 0; }
-#sidebar a{ display:block; color: #000; text-decoration: none; height: auto; }
+#sidebar a{ color: #000; padding-left: 5px; text-decoration: none; height: auto; }
 #sidebar a:hover { text-decoration: underline; }
-#sidebar h1, #sidebar h2, #sidebar h3 { 
+#sidebar h1, #sidebar h2, #sidebar h3, #sidebar h4 { 
   font-size: 12px; 
   font-weight: bold; 
   color: white;
