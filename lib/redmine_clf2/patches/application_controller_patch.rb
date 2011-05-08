@@ -7,8 +7,7 @@ module RedmineClf2
         base.send(:include, InstanceMethods)
 
         base.class_eval do
-          cattr_accessor :clf2_subdomain_languages
-
+          cattr_accessor :subdomain_languages
 
           # Skip Redmine's default :set_localization
           skip_before_filter :set_localization
@@ -17,14 +16,12 @@ module RedmineClf2
           # Add set_localization_from_domain to the very beginning
           prepend_before_filter_if_not_already_added :switch_language_from_domain
 
-          alias_method_chain :set_localization, :clf_mods  
+          alias_method_chain :set_localization, :clf_mods
           alias_method_chain :url_for, :language_in_url
 
-          base.load_clf2_subdomains_file
-          
-          helper :clf2
+          base.load_subdomains_file
 
-          
+          helper :clf2
         end
       end
     end
@@ -47,26 +44,26 @@ module RedmineClf2
           before_filter method
         end
       end
-      
+
       # Checks if a filter has already been added to the filter_chain
       def filter_already_added?(filter)
         return self.filter_chain.collect(&:method).include?(filter)
       end
 
-      # Load the clf2_subdomains.yml file to configure the subdomain
+      # Load the subdomains.yml file to configure the subdomain
       # to language mapping.  In development mode this will be
       # reloaded with each request but in production, it will be cached.
-      def load_clf2_subdomains_file
-        domain_file = File.join(Rails.plugins['redmine_clf2'].directory,'config','clf2_subdomains.yml')
-        if File.exists?(domain_file)
-          self.clf2_subdomain_languages = YAML::load(File.read(domain_file))
-          logger.debug "Loaded CLF2 subdomain file"
+      def load_subdomains_file
+        subdomains_file = File.join(Rails.plugins['redmine_clf2'].directory,'config','subdomains.yml')
+        if File.exists?(subdomains_file)
+          self.subdomain_languages = YAML::load(File.read(subdomains_file))
+          logger.debug "Loaded subdomains file"
         else
-          logger.error "CLF2 subdomain file not found at #{domain_file}. Subdomain specific languages will not be used."
+          logger.error "Subdomains file not found at #{domain_file}. Subdomain specific languages will not be used."
         end
       end
     end
-    
+
     # Additional InstanceMethods
     module InstanceMethods
       def switch_language_to(language)
@@ -93,7 +90,7 @@ module RedmineClf2
 
       def set_localization_with_clf_mods
         logger.debug "In set_localization_with_clf_mods"
-        switch_language_to(:french) if request.request_uri =~ /\/french$/ 
+        switch_language_to(:french) if request.request_uri =~ /\/french$/
         switch_language_to(:english) if request.request_uri =~ /\/english$/
         set_current_language_from_session
 
@@ -118,7 +115,7 @@ module RedmineClf2
         unless options.respond_to?(:merge)
           return url_for_without_language_in_url(options)
         end
-        
+
         case current_language
         when :en
           url_for_without_language_in_url(options.merge(:lang => 'eng'))
