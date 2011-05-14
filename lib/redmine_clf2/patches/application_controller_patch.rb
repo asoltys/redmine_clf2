@@ -9,16 +9,6 @@ module RedmineClf2
         base.class_eval do
           cattr_accessor :subdomain_languages
 
-          # Skip Redmine's default :set_localization
-          skip_before_filter :set_localization
-          # Add our :set_localization method to the start of the chain
-          prepend_before_filter_if_not_already_added :set_localization
-          # Add set_localization_from_domain to the very beginning
-          prepend_before_filter_if_not_already_added :switch_language_from_domain
-
-          alias_method_chain :set_localization, :clf_mods
-          alias_method_chain :url_for, :language_in_url
-
           base.load_subdomains_file
 
           helper :clf2
