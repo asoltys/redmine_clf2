@@ -1,2 +1,6 @@
-en: tbs-sct.ircan-rican.gc.ca
-fr: sct-tbs.rican-ircan.gc.ca
+# Mapping subdomains to locales
+# The first subdomain listed will be considered canonical
+en: 
+  - 'pacdev2.ncr.pwgsc'
+fr: 
+  - 'pacdev2.ncr.pwgsc'

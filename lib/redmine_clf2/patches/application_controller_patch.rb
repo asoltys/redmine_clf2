@@ -7,11 +7,14 @@ module RedmineClf2
         base.send(:include, InstanceMethods)
 
         base.class_eval do
-          cattr_accessor :subdomain_languages
-
-          base.load_subdomains_file
-
+          unloadable
           helper :clf2
+          cattr_accessor :subdomains, :tld_length
+          load_clf2_subdomains_file
+          alias_method_chain :set_localization, :clf_mods
+          alias_method_chain :logged_user=, :clf_mods
+          helper_method :canonical_url
+          self.tld_length = 2
         end
       end
     end
@@ -43,11 +46,10 @@ module RedmineClf2
       # Load the subdomains.yml file to configure the subdomain
       # to language mapping.  In development mode this will be
       # reloaded with each request but in production, it will be cached.
-      def load_subdomains_file
+      def load_clf2_subdomains_file
         subdomains_file = File.join(Rails.plugins['redmine_clf2'].directory,'config','subdomains.yml')
         if File.exists?(subdomains_file)
-          self.subdomain_languages = YAML::load(File.read(subdomains_file))
-          logger.debug "Loaded subdomains file"
+          self.subdomains = YAML::load(File.read(subdomains_file))
         else
           logger.error "Subdomains file not found at #{domain_file}. Subdomain specific languages will not be used."
         end
@@ -56,65 +58,90 @@ module RedmineClf2
 
     # Additional InstanceMethods
     module InstanceMethods
-      def switch_language_to(language)
-        # Guard against a loop since this runs for the
-        # LanguageSwitcherController also
-        unless params[:controller] == 'language_switcher'
-          redirect_to :controller => 'language_switcher', :action => language
-        end
+      def contact
+        url = '/projects/ircan-initiative/wiki/Frequently_Asked_Questions'
+        head :moved_permanently, :location => url 
       end
 
-      def switch_language_from_domain
-        # Skip if language is already set
-        return true if session[:language]
+      def help
+        url = '/projects/help-aide'
+        head :moved_permanently, :location => url 
       end
 
-      def set_current_language_from_session
-        if session[:language]
-          User.current.language = session[:language]
-          current_language = session[:language]
-        else
-          User.current.language = nil unless User.current.logged?
-        end
-      end
-
+      # Override this method to determine the locale from the URL
       def set_localization_with_clf_mods
-        logger.debug "In set_localization_with_clf_mods"
-        switch_language_to(:french) if request.request_uri =~ /\/french$/
-        switch_language_to(:english) if request.request_uri =~ /\/english$/
-        set_current_language_from_session
-
-        # Most of this is copied from the core, except as noted.
-        lang = nil
-        if User.current.language.present? # Modified from core
-          lang = find_language(User.current.language)
+        begin
+          ActionController::Base.session_options[:domain] = request.domain(self.tld_length)
+        rescue
+          ActionController::Base.session_options = {:domain => request.domain(self.tld_length)}
         end
-        if lang.nil? && request.env['HTTP_ACCEPT_LANGUAGE']
-          accept_lang = parse_qvalues(request.env['HTTP_ACCEPT_LANGUAGE']).first.downcase
-          if !accept_lang.blank?
-            lang = find_language(accept_lang) || find_language(accept_lang.split('-').first)
-          end
-        end
-        lang ||= Setting.default_language
-        set_language_if_valid(lang)
 
+        request.path == '/' ?
+          session[:language] ||= params[:lang] :
+          session[:language] = locale_from_url
+
+        if request.get? && canonical_url != request.url
+          head :moved_permanently, :location => canonical_url 
+        end
+
+        set_language_if_valid(locale_from_url) 
       end
 
-      def url_for_with_language_in_url(options)
-        # Pass without language if options isn't a hash (e.g. url string)
-        unless options.respond_to?(:merge)
-          return url_for_without_language_in_url(options)
+      # Override this method to ensure that session[:language] is preserved on login/logout
+      def logged_user_with_clf_mods=(user)
+        reset_session if session.respond_to?(:destroy)
+        if user && user.is_a?(User)
+          User.current = user
+          session[:user_id] = user.id
+        else
+          User.current = User.anonymous
+        end
+        session[:language] = locale_from_url
+      end
+
+      def canonical_url(locale = nil)
+        locale ||= locale_from_url
+
+        # Find the canonical subdomains for the current locale
+        # as defined in config/subdomains.yml
+        canonical_subdomains = self.subdomains.keys.include?(locale) ? 
+          self.subdomains[locale].first.split(".") : 
+          self.subdomains.values.flatten.first.split(".")
+        canonical_domain = canonical_subdomains.pop
+
+        number_of_additional_subdomains = [request.subdomains(self.tld_length).size - canonical_subdomains.size, 0].max
+
+        # Preserve additional subdomains if they exist
+        additional_subdomains = request.subdomains(self.tld_length).take(number_of_additional_subdomains)
+        canonical_subdomains.unshift(additional_subdomains) if additional_subdomains.any?
+
+        # Strip the lang parameter out of the query string if 
+        # it's been provided, but leave the other parameters
+        query_string = request.query_string.sub(/&lang(\=[^&]*)?(?=&|$)|^lang(\=[^&]*)?(&|$)/, '')
+        url = request.url.sub(/\?.*/, '')
+        url += "?#{query_string}" unless query_string.empty?
+
+        # Replace the provided subdomains with the canonical ones
+        url.sub(request.subdomains(self.tld_length).push(request.domain(self.tld_length).split(".").first).join("."), (canonical_subdomains.push(canonical_domain)).join("."))
+      end
+
+      private
+
+      def locale_from_url
+        # If an explicit lang parameter is provided, it takes precedence over the subdomain
+        if params[:lang] && I18n.available_locales.include?(params[:lang].to_sym)
+          return params[:lang]
         end
 
-        case current_language
-        when :en
-          url_for_without_language_in_url(options.merge(:lang => 'eng'))
-        when :fr
-          url_for_without_language_in_url(options.merge(:lang => 'fra'))
-        else
-          url_for_without_language_in_url(options)
-        end
+        # Otherwise we take the first locale in config/subdomains.yml 
+        # that has a subdomain matching the requested one
+        self.subdomains.keys.find{|locale| 
+          self.subdomains[locale].find{|subdomain| 
+            subdomain.split(".").last == request.domain(self.tld_length).split(".").first
+          }
+        }
       end
     end # InstanceMethods
   end
 end
+
