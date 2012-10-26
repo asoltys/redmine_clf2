@@ -3,7 +3,8 @@
 <head>
   <%= render :partial => 'layouts/head' %>
 </head>
-<body>
+<body class="<%=h body_css_classes %>">
+<div id="wrapper">
 <!-- Two column layout begins / Début de la mise en page de deux colonnes -->
 <div id="cn-body-inner-2col">
   <!-- Skip header begins / Début du saut de l'en-tête -->
@@ -39,5 +40,6 @@
 	<!-- Footer ends / Fin du pied de page -->
 </div>
 <!-- Two column layout ends / Fin de la mis en page de deux colonnes -->
+</div>
 </body>
 </html>
